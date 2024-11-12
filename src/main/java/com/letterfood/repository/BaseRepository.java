@@ -29,4 +29,10 @@ public abstract class BaseRepository<T> {
     public Optional<T> findByField(String fieldName, Object value) {
         return Optional.ofNullable(collection.find(eq(fieldName, value)).first());
     }
+
+    // Getter para collection
+    public MongoCollection<T> getCollection() {
+        return collection;
+    }
+    
 }

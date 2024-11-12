@@ -14,4 +14,10 @@ public class UsuarioRepository extends BaseRepository<Usuario> {
     public Optional<Usuario> findByEmail(String email) {
         return findByField("email", email);
     }
+
+    // Getter para collection (caso precise de uma coleção específica)
+    public MongoCollection<Usuario> getCollection() {
+        return mongoConfig.getDatabase().getCollection("usuarios", Usuario.class);
+    }
+
 }

@@ -10,7 +10,7 @@ public class MongoConfig {
     private MongoDatabase database;
 
     private MongoConfig() {
-        String connectionString = System.getenv("MONGO_URI"); // Variável de ambiente para segurança
+        String connectionString = System.getenv("MONGO_URI");
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase("letterfood");
     }

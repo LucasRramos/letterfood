@@ -8,5 +8,10 @@ public class RestauranteRepository extends BaseRepository<Restaurante> {
         super(mongoConfig, "restaurantes", Restaurante.class);
     }
 
-    // Métodos específicos de Restaurante podem ser adicionados aqui
+    // Getter para collection
+    @Override
+    public MongoCollection<Restaurante> getCollection() {
+        return super.getCollection();
+    }
+    
 }
