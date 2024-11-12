@@ -9,6 +9,7 @@ import com.letterfood.repository.UsuarioRepository;
 public class LetterfoodApplication {
 
     public static void main(String[] args) {
+        
         // Configuração do MongoDB
         MongoConfig mongoConfig = new MongoConfig();
         mongoConfig.connect();
