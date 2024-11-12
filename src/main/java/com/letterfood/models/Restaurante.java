@@ -8,5 +8,5 @@ public class Restaurante {
     private String nome;
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 
-    // Getters e Setters
+    
 }

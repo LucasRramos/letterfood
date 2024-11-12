@@ -1,16 +1,12 @@
 package com.letterfood.repository;
 
+import com.letterfood.config.MongoConfig;
 import com.letterfood.model.Restaurante;
-import java.util.Optional;
 
-public class RestauranteRepository {
-
-    public Optional<Restaurante> findById(String id) {
-        // Código para encontrar restaurante no MongoDB
-        return Optional.empty();
+public class RestauranteRepository extends BaseRepository<Restaurante> {
+    public RestauranteRepository(MongoConfig mongoConfig) {
+        super(mongoConfig, "restaurantes", Restaurante.class);
     }
 
-    public void save(Restaurante restaurante) {
-        // Código para salvar restaurante no MongoDB
-    }
+    // Métodos específicos de Restaurante podem ser adicionados aqui
 }

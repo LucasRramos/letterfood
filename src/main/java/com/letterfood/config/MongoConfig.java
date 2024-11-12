@@ -5,14 +5,21 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoConfig {
+    private static MongoConfig instance;
     private MongoClient mongoClient;
     private MongoDatabase database;
 
-    public void connect() {
-        String connectionString = "mongodb://localhost:27017";
+    private MongoConfig() {
+        String connectionString = System.getenv("MONGO_URI"); // Variável de ambiente para segurança
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase("letterfood");
-        System.out.println("Conectado ao MongoDB.");
+    }
+
+    public static MongoConfig getInstance() {
+        if (instance == null) {
+            instance = new MongoConfig();
+        }
+        return instance;
     }
 
     public MongoDatabase getDatabase() {
@@ -20,7 +27,8 @@ public class MongoConfig {
     }
 
     public void disconnect() {
-        mongoClient.close();
-        System.out.println("Conexão com MongoDB encerrada.");
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
     }
 }

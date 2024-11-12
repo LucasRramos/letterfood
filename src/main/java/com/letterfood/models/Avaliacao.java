@@ -1,8 +1,8 @@
 package com.letterfood.model;
 
 public class Avaliacao {
-    private String comentario;
     private int nota;
+    private String comentario;
 
-    // Getters e Setters
+    // Getters e setters
 }
