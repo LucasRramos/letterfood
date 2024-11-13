@@ -1,7 +1,7 @@
 package com.letterfood.controller;
 
 import com.letterfood.dto.LoginDTO;
-import com.letterfood.model.Usuario;
+import com.letterfood.models.Usuario;
 import com.letterfood.service.UsuarioService;
 
 import java.util.logging.Logger;

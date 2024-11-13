@@ -1,4 +1,4 @@
-package com.letterfood.model;
+package com.letterfood.models;
 
 public class Avaliacao {
     private int nota;

@@ -1,7 +1,8 @@
 package com.letterfood.service;
 
+import com.letterfood.config.MongoConfig;
 import com.letterfood.dto.LoginDTO;
-import com.letterfood.model.Usuario;
+import com.letterfood.models.Usuario;
 import com.letterfood.repository.UsuarioRepository;
 
 import java.util.Optional;
@@ -14,6 +15,10 @@ public class UsuarioService {
     // Construtor com injeção de dependência
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+    }
+
+    public UsuarioService(MongoConfig mongoConfig) {
+        //TODO Auto-generated constructor stub
     }
 
     // Registro de novo usuário

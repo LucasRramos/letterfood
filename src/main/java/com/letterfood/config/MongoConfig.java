@@ -9,7 +9,7 @@ public class MongoConfig {
     private MongoClient mongoClient;
     private MongoDatabase database;
 
-    private MongoConfig() {
+    public MongoConfig() {
         String connectionString = System.getenv("MONGO_URI");
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase("letterfood");
@@ -30,5 +30,10 @@ public class MongoConfig {
         if (mongoClient != null) {
             mongoClient.close();
         }
+    }
+
+    public void connect() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'connect'");
     }
 }

@@ -1,4 +1,4 @@
-package com.letterfood.model;
+package com.letterfood.models;
 
 public class Usuario {
     private String id;

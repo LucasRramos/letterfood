@@ -5,6 +5,8 @@ import com.letterfood.controller.RestauranteController;
 import com.letterfood.controller.UsuarioController;
 import com.letterfood.repository.RestauranteRepository;
 import com.letterfood.repository.UsuarioRepository;
+import com.letterfood.service.RestauranteService;
+import com.letterfood.service.UsuarioService;
 
 public class LetterfoodApplication {
 
@@ -15,8 +17,8 @@ public class LetterfoodApplication {
         mongoConfig.connect();
 
         // Inicialização dos repositórios
-        UsuarioRepository usuarioRepository = new UsuarioRepository(mongoConfig);
-        RestauranteRepository restauranteRepository = new RestauranteRepository(mongoConfig);
+        UsuarioService usuarioRepository = new UsuarioService(mongoConfig);
+        RestauranteService restauranteRepository = new RestauranteService(mongoConfig);
 
         // Inicialização dos controladores com os repositórios
         UsuarioController usuarioController = new UsuarioController(usuarioRepository);

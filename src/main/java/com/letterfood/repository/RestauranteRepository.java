@@ -1,7 +1,7 @@
 package com.letterfood.repository;
 
 import com.letterfood.config.MongoConfig;
-import com.letterfood.model.Restaurante;
+import com.letterfood.models.Restaurante;
 
 public class RestauranteRepository extends BaseRepository<Restaurante> {
     public RestauranteRepository(MongoConfig mongoConfig) {
