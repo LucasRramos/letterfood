@@ -1,7 +1,8 @@
 package com.letterfood.service;
 
-import com.letterfood.model.Avaliacao;
-import com.letterfood.model.Restaurante;
+import com.letterfood.config.MongoConfig;
+import com.letterfood.models.Avaliacao;
+import com.letterfood.models.Restaurante;
 import com.letterfood.repository.RestauranteRepository;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class RestauranteService {
     private static final Logger logger = Logger.getLogger(RestauranteService.class.getName());
 
     // Construtor com injeção de dependência
-    public RestauranteService(RestauranteRepository restauranteRepository) {
-        this.restauranteRepository = restauranteRepository;
+    public RestauranteService(MongoConfig mongoConfig) {
+        this.restauranteRepository = mongoConfig;
     }
 
     // Adicionar uma avaliação ao restaurante

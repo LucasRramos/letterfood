@@ -1,6 +1,6 @@
 package com.letterfood.controller;
 
-import com.letterfood.model.Avaliacao;
+import com.letterfood.models.Avaliacao;
 import com.letterfood.service.RestauranteService;
 
 import java.util.List;
