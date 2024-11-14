@@ -1,0 +1,5 @@
+com/letterfood/models/Usuario.class
+com/letterfood/models/Restaurante.class
+com/letterfood/controller/UsuarioController.class
+com/letterfood/config/MongoConfig.class
+com/letterfood/models/Avaliacao.class

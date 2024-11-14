@@ -21,8 +21,12 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+    // Construtor com MongoConfig
     public UsuarioService(MongoConfig mongoConfig) {
+    // Aqui você pode inicializar o usuarioRepository, usando mongoConfig, por exemplo
+        this.usuarioRepository = new UsuarioRepository(mongoConfig);  // Exemplo de como inicializar
     }
+
 
     // Registro de novo usuário
     public void registrarUsuario(Usuario usuario) {

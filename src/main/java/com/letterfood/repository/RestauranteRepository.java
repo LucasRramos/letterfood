@@ -4,6 +4,9 @@ import com.letterfood.config.MongoConfig;
 import com.letterfood.models.Restaurante;
 import com.mongodb.client.MongoCollection;
 
+import java.util.Optional; // Para Optional
+import com.mongodb.client.model.Filters; // Para Filters
+
 public class RestauranteRepository {
 
     private final MongoCollection<Restaurante> restauranteCollection;
@@ -17,7 +20,7 @@ public class RestauranteRepository {
         Restaurante restaurante = restauranteCollection.find(Filters.eq("_id", id)).first();
         return Optional.ofNullable(restaurante);
     }
-    
+
     // Método para salvar restaurante (inserir ou atualizar)
     public void save(Restaurante restaurante) {
         restauranteCollection.insertOne(restaurante);  // Insere o restaurante
