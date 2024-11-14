@@ -4,6 +4,9 @@ import com.letterfood.models.Avaliacao;
 import com.letterfood.models.Restaurante;
 import com.letterfood.repository.RestauranteRepository;
 
+import java.util.Optional;
+import com.mongodb.client.model.Filters;
+
 import java.util.List;
 import java.util.logging.Logger;
 
