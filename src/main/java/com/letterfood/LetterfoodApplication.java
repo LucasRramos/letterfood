@@ -17,12 +17,16 @@ public class LetterfoodApplication {
         mongoConfig.connect();
 
         // Inicialização dos repositórios
-        UsuarioService usuarioRepository = new UsuarioService(mongoConfig);
-        RestauranteService restauranteRepository = new RestauranteService(mongoConfig);
+        RestauranteRepository restauranteRepository = new RestauranteRepository();
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
 
-        // Inicialização dos controladores com os repositórios
-        UsuarioController usuarioController = new UsuarioController(usuarioRepository);
-        RestauranteController restauranteController = new RestauranteController(restauranteRepository);
+        // Inicialização dos serviços com os repositórios
+        RestauranteService restauranteService = new RestauranteService(restauranteRepository);
+        UsuarioService usuarioService = new UsuarioService(usuarioRepository);
+
+        // Inicialização dos controladores com os serviços
+        UsuarioController usuarioController = new UsuarioController(usuarioService);
+        RestauranteController restauranteController = new RestauranteController(restauranteService);
 
         System.out.println("Aplicação Letterfood inicializada.");
 

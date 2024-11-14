@@ -12,6 +12,12 @@ public class RestauranteRepository {
         this.restauranteCollection = MongoConfig.getInstance().getDatabase().getCollection("restaurantes", Restaurante.class);
     }
 
+    // Método para buscar restaurante por ID
+    public Optional<Restaurante> findById(String id) {
+        Restaurante restaurante = restauranteCollection.find(Filters.eq("_id", id)).first();
+        return Optional.ofNullable(restaurante);
+    }
+    
     // Método para salvar restaurante (inserir ou atualizar)
     public void save(Restaurante restaurante) {
         restauranteCollection.insertOne(restaurante);  // Insere o restaurante

@@ -4,6 +4,9 @@ import com.letterfood.config.MongoConfig;
 import com.letterfood.models.Usuario;
 import com.mongodb.client.MongoCollection;
 
+import java.util.Optional;
+import static com.mongodb.client.model.Filters.eq;  // Importar o eq para filtragem no MongoDB
+
 public class UsuarioRepository {
 
     private final MongoCollection<Usuario> usuarioCollection;
