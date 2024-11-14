@@ -6,6 +6,9 @@ import com.letterfood.models.Usuario;
 import com.letterfood.repository.UsuarioRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -19,7 +22,6 @@ public class UsuarioService {
     }
 
     public UsuarioService(MongoConfig mongoConfig) {
-        //TODO Auto-generated constructor stub
     }
 
     // Registro de novo usuário

@@ -2,22 +2,30 @@ package com.letterfood.repository;
 
 import com.letterfood.config.MongoConfig;
 import com.letterfood.models.Usuario;
+import com.mongodb.client.MongoCollection;
+import org.bson.conversions.Bson;
 
 import java.util.Optional;
 
-public class UsuarioRepository extends BaseRepository<Usuario> {
-    public UsuarioRepository(MongoConfig mongoConfig) {
-        super(mongoConfig, "usuarios", Usuario.class);
+import static com.mongodb.client.model.Filters.eq;
+
+public class UsuarioRepository {
+
+    private final MongoCollection<Usuario> usuarioCollection;
+
+    public UsuarioRepository() {
+        // Instancia a coleção "usuarios" a partir da configuração do MongoDB
+        this.usuarioCollection = MongoConfig.getInstance().getDatabase().getCollection("usuarios", Usuario.class);
     }
 
-    // Busca específica pelo email do usuário
+    // Método para buscar usuário pelo campo "email"
     public Optional<Usuario> findByEmail(String email) {
-        return findByField("email", email);
+        Usuario usuario = usuarioCollection.find(eq("email", email)).first();
+        return Optional.ofNullable(usuario);
     }
 
-    // Getter para collection (caso precise de uma coleção específica)
+    // Getter para acessar a coleção diretamente, caso seja necessário
     public MongoCollection<Usuario> getCollection() {
-        return mongoConfig.getDatabase().getCollection("usuarios", Usuario.class);
+        return usuarioCollection;
     }
-
 }
