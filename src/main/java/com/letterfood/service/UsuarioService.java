@@ -4,6 +4,7 @@ import com.letterfood.config.MongoConfig;
 import com.letterfood.dto.LoginDTO;
 import com.letterfood.models.Usuario;
 import com.letterfood.repository.UsuarioRepository;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;
 import java.util.logging.Logger;

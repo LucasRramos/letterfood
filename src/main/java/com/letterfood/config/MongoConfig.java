@@ -36,4 +36,9 @@ public class MongoConfig {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'connect'");
     }
+
+    public Object findById(String restauranteId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
 }
