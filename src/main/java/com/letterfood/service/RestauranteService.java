@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class RestauranteService {
-    private final RestauranteRepository restauranteRepository;
+    private final MongoConfig restauranteRepository;
     private static final Logger logger = Logger.getLogger(RestauranteService.class.getName());
 
     // Construtor com injeção de dependência
