@@ -58,4 +58,5 @@ jobs:
         with:
           app-name: 'letterfood'
           slot-name: 'Production'
-          package: 'target/letterfood-1.0-SNAPSHOT-jar-with-dependencies.jar' # Nome completo do JAR final
+          package: 'target/letterfood-1.0-SNAPSHOT-jar-with-dependencies.jar' # Usar o JAR correto
+      
