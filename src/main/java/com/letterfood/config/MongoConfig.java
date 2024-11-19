@@ -8,14 +8,14 @@ public class MongoConfig {
     private static MongoConfig instance;
     private MongoClient mongoClient;
     private MongoDatabase database;
-
+    
     public MongoConfig() {
         String connectionString = System.getenv("MONGO_URI");
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase("letterfood");
     }
 
-    public static MongoConfig getInstance() {
+    public static MongoConfig getInstance() { 
         if (instance == null) {
             instance = new MongoConfig();
         }
@@ -29,16 +29,7 @@ public class MongoConfig {
     public void disconnect() {
         if (mongoClient != null) {
             mongoClient.close();
+            System.out.println("Conexão com MongoDB fechada.");
         }
-    }
-
-    public void connect() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'connect'");
-    }
-
-    public Object findById(String restauranteId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 }
