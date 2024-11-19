@@ -17,17 +17,10 @@
     </properties>
 
     <dependencies>
-        <!-- MongoDB Driver -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.8.0</version> <!-- Ou outra versão estável -->
-        </dependency>
-
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver-core</artifactId>
-            <version>4.10.0</version>
+            <version>4.11.0</version> <!-- Verifique a última versão -->
         </dependency>
 
         <dependency>

@@ -10,10 +10,17 @@ public class MongoConfig {
     private MongoDatabase database;
     
     public MongoConfig() {
-        String connectionString = System.getenv("MONGO_URI");
-        mongoClient = MongoClients.create(connectionString);
-        database = mongoClient.getDatabase("letterfood");
-    }
+        try {
+            String connectionString = System.getenv("MONGO_URI");
+            if (connectionString == null || connectionString.isEmpty()) {
+                throw new IllegalArgumentException("A variável de ambiente MONGO_URI não está configurada.");
+            }
+            mongoClient = MongoClients.create(connectionString);
+            database = mongoClient.getDatabase("letterfood");
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao conectar ao MongoDB: " + e.getMessage(), e);
+        }
+    }    
 
     public static MongoConfig getInstance() { 
         if (instance == null) {
