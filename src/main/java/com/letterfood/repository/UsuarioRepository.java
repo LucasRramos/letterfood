@@ -5,7 +5,7 @@ import com.letterfood.models.Usuario;
 import com.mongodb.client.MongoCollection;
 
 import java.util.Optional;
-import static com.mongodb.client.model.Filters.eq;  // Importar o eq para filtragem no MongoDB
+import static com.mongodb.client.model.Filters.eq; // Importar o eq para filtragem no MongoDB
 
 public class UsuarioRepository {
 
@@ -23,11 +23,12 @@ public class UsuarioRepository {
 
     // Método para salvar usuário (inserir ou atualizar)
     public void save(Usuario usuario) {
-        usuarioCollection.insertOne(usuario);  // Insere o usuário
+        usuarioCollection.insertOne(usuario); // Insere o usuário
         // Se precisar atualizar, pode usar updateOne em vez de insertOne
     }
 
     public MongoCollection<Usuario> getCollection() {
         return usuarioCollection;
     }
+
 }

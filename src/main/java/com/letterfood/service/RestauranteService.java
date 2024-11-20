@@ -7,6 +7,7 @@ import com.letterfood.repository.RestauranteRepository;
 import java.util.Optional;
 import com.mongodb.client.model.Filters;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,6 +15,24 @@ public class RestauranteService {
 
     private final RestauranteRepository restauranteRepository;
     private static final Logger logger = Logger.getLogger(RestauranteService.class.getName());
+
+    public void adicionarRestaurante(Restaurante restaurante) {
+        if (restaurante == null) {
+            throw new IllegalArgumentException("Restaurante não pode ser nulo.");
+        }
+        restauranteRepository.save(restaurante);
+    }
+
+    // Método para listar todos os restaurantes
+    public List<Restaurante> listarRestaurantes() {
+        return restauranteRepository.findAll();
+    }
+
+    // Método para buscar restaurante por ID
+    public Restaurante buscarRestaurantePorId(String restauranteId) {
+        return restauranteRepository.findById(restauranteId)
+                .orElseThrow(() -> new RestauranteNotFoundException("Restaurante com ID " + restauranteId + " não encontrado."));
+    }
 
     // Construtor com injeção de dependência
     public RestauranteService(RestauranteRepository restauranteRepository) {
@@ -59,5 +78,15 @@ public class RestauranteService {
         public RestauranteNotFoundException(String message) {
             super(message);
         }
+    }
+
+    public String adicionarImagemAoRestaurante(String restauranteId, InputStream imagemStream, String nomeImagem) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'adicionarImagemAoRestaurante'");
+    }
+
+    public InputStream buscarImagemDoRestaurante(String restauranteId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarImagemDoRestaurante'");
     }
 }

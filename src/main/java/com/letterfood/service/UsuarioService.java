@@ -80,4 +80,9 @@ public class UsuarioService {
             super(message);
         }
     }
+
+    public Usuario buscarUsuarioPorEmail(String email) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarUsuarioPorEmail'");
+    }
 }
