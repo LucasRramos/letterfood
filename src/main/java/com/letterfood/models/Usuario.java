@@ -4,7 +4,9 @@ public class Usuario {
     private String id;
     private String nome;
     private String email;
-    private String senhaHash;
+    private String senha;
+    private String descricao;  // Nova descrição do usuário
+    private String imagemId; 
 
     // Getter para id
     public String getId() {
@@ -36,13 +38,30 @@ public class Usuario {
         this.email = email;
     }
 
-    // Getter para senhaHash
-    public String getSenhaHash() {
-        return senhaHash;
+    // Getter para senha
+    public String getSenha() {
+        return senha;
     }
 
-    // Setter para senhaHash
-    public void setSenhaHash(String senhaHash) {
-        this.senhaHash = senhaHash;
+    // Setter para senha
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    // Getters e Setters para os novos campos
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getImagemId() {
+        return imagemId;
+    }
+
+    public void setImagemId(String imagemId) {
+        this.imagemId = imagemId;
     }
 }

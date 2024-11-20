@@ -11,7 +11,7 @@ public class RestauranteRepository {
 
     private final MongoCollection<Restaurante> restauranteCollection;
 
-    public RestauranteRepository() {
+    public RestauranteRepository(MongoConfig mongoConfig) {
         this.restauranteCollection = MongoConfig.getInstance().getDatabase().getCollection("restaurantes", Restaurante.class);
     }
 

@@ -18,7 +18,7 @@ public class LetterfoodApplication {
             MongoConfig mongoConfig = new MongoConfig();
     
             // Inicialização dos repositórios
-            RestauranteRepository restauranteRepository = new RestauranteRepository();
+            RestauranteRepository restauranteRepository = new RestauranteRepository(mongoConfig);
             UsuarioRepository usuarioRepository = new UsuarioRepository();
     
             // Inicialização dos serviços com os repositórios

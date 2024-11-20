@@ -22,13 +22,17 @@ public class UsuarioService {
     }
 
     // Registro de novo usuário
-    public void registrarUsuario(Usuario usuario) {
-        if (usuario == null || usuario.getSenhaHash() == null || usuario.getSenhaHash().isEmpty()) {
+    public void registrarUsuario(Usuario usuario, String descricao, String imagemId) {
+        if (usuario == null || usuario.getSenha() == null || usuario.getSenha().isEmpty()) {
             throw new IllegalArgumentException("Usuário e senha não podem ser nulos ou vazios.");
         }
 
-        String senhaHash = hashPassword(usuario.getSenhaHash());
-        usuario.setSenhaHash(senhaHash);
+        // Atribuindo a descrição e o ID da imagem ao usuário
+        usuario.setDescricao(descricao);
+        usuario.setImagemId(imagemId);
+
+        String senhaHash = hashPassword(usuario.getSenha());
+        usuario.setSenha(senhaHash);
         usuarioRepository.save(usuario);
 
         logger.info("Usuário registrado com sucesso: " + usuario.getEmail());
@@ -43,7 +47,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(loginDTO.getEmail());
         Usuario usuario = usuarioOptional.orElseThrow(() -> new AuthenticationException("Usuário não encontrado"));
 
-        if (validatePassword(loginDTO.getSenha(), usuario.getSenhaHash())) {
+        if (validatePassword(loginDTO.getSenha(), usuario.getSenha())) {
             String token = generateJwtToken(usuario);
             logger.info("Usuário autenticado com sucesso: " + usuario.getEmail());
             return token;

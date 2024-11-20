@@ -16,13 +16,17 @@ public class UsuarioController {
     }
 
     // Método para registrar usuário
-    public String registrarUsuario(Usuario usuario) {
-        if (usuario == null || usuario.getEmail() == null || usuario.getSenhaHash() == null) {
+    public String registrarUsuario(Usuario usuario, String descricao, String imagemId) {
+        if (usuario == null || usuario.getEmail() == null || usuario.getSenha() == null) {
             throw new IllegalArgumentException("Usuário, email e senha não podem ser nulos.");
         }
-        
+
         try {
-            usuarioService.registrarUsuario(usuario);
+            // Adicionando descrição e imagem ao usuário
+            usuario.setDescricao(descricao);
+            usuario.setImagemId(imagemId);
+
+            usuarioService.registrarUsuario(usuario, descricao, imagemId);
             logger.info("Usuário registrado com sucesso: " + usuario.getEmail());
             return "Usuário registrado com sucesso.";
         } catch (RuntimeException e) {
@@ -51,4 +55,5 @@ public class UsuarioController {
             return "Erro ao autenticar usuário: " + e.getMessage();
         }
     }
+
 }

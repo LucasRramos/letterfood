@@ -7,6 +7,8 @@ public class Restaurante {
     private String nome;
     private String endereco;
     private List<Avaliacao> avaliacoes;
+    private String descricao;
+    private String imagemId;  // Referência à imagem no GridFS
 
     // Getter para id
     public String getId() {
@@ -46,5 +48,23 @@ public class Restaurante {
     // Setter para avaliacoes
     public void setAvaliacoes(List<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
+    }
+
+    // Getter para imagemId
+    public String getImagemId() {
+        return imagemId;
+    }
+
+    // Setter para imagemId
+    public void setImagemId(String imagemId) {
+        this.imagemId = imagemId;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
