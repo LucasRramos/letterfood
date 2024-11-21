@@ -4,6 +4,8 @@ import com.letterfood.config.MongoConfig;
 import com.letterfood.models.Restaurante;
 import com.mongodb.client.MongoCollection;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional; // Para Optional
 import com.mongodb.client.model.Filters; // Para Filters
 
@@ -11,8 +13,9 @@ public class RestauranteRepository {
 
     private final MongoCollection<Restaurante> restauranteCollection;
 
-    public RestauranteRepository(MongoConfig mongoConfig) {
-        this.restauranteCollection = MongoConfig.getInstance().getDatabase().getCollection("restaurantes", Restaurante.class);
+    public RestauranteRepository() {
+        this.restauranteCollection = MongoConfig.getInstance().getDatabase().getCollection("restaurantes",
+                Restaurante.class);
     }
 
     // Método para buscar restaurante por ID
@@ -23,11 +26,19 @@ public class RestauranteRepository {
 
     // Método para salvar restaurante (inserir ou atualizar)
     public void save(Restaurante restaurante) {
-        restauranteCollection.insertOne(restaurante);  // Insere o restaurante
+        restauranteCollection.insertOne(restaurante); // Insere o restaurante
         // Se precisar atualizar, pode usar updateOne em vez de insertOne
     }
 
     public MongoCollection<Restaurante> getCollection() {
         return restauranteCollection;
     }
+
+    // Método para listar todos os restaurantes
+    public List<Restaurante> findAll() {
+        return restauranteCollection.find().into(new ArrayList<>());
+
+    }
+
+
 }

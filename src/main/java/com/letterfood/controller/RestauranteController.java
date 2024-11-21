@@ -1,7 +1,12 @@
 package com.letterfood.controller;
 
+import com.google.gson.Gson; // Importar Gson
 import com.letterfood.models.Avaliacao;
+import com.letterfood.models.Restaurante;
 import com.letterfood.service.RestauranteService;
+
+import java.io.InputStream;
+import static spark.Spark.*;
 
 import java.io.InputStream;
 import java.util.List;
@@ -14,6 +19,38 @@ public class RestauranteController {
     // Construtor com injeção de dependência
     public RestauranteController(RestauranteService restauranteService) {
         this.restauranteService = restauranteService;
+        definirEndpoints(); // Chamar o método para definir os endpoints
+    }
+
+    private void definirEndpoints() {
+        Gson gson = new Gson(); // Instanciar Gson
+
+        // Endpoint para adicionar uma avaliação
+        post("/restaurantes/:id/avaliacoes", (req, res) -> {
+            String restauranteId = req.params(":id");
+            Avaliacao avaliacao = gson.fromJson(req.body(), Avaliacao.class); // Converter JSON para Avaliacao
+            return adicionarAvaliacao(restauranteId, avaliacao);
+        }, gson::toJson); // Usar Gson para converter a resposta em JSON
+
+        // Endpoint para listar avaliações do restaurante
+        get("/restaurantes/:id/avaliacoes", (req, res) -> {
+            String restauranteId = req.params(":id");
+            return listarAvaliacoes(restauranteId);
+        }, gson::toJson); // Usar Gson para converter a resposta em JSON
+
+        // Endpoint para adicionar imagem ao restaurante
+        post("/restaurantes/:id/imagem", (req, res) -> {
+            String restauranteId = req.params(":id");
+            InputStream imagemStream = req.raw().getInputStream(); // Obter InputStream da imagem
+            String nomeImagem = req.queryParams("nomeImagem"); // Obter nome da imagem dos parâmetros da query
+            return adicionarImagemAoRestaurante(restauranteId, imagemStream, nomeImagem);
+        });
+
+        // Endpoint para buscar imagem do restaurante
+        get("/restaurantes/:id/imagem", (req, res) -> {
+            String restauranteId = req.params(":id");
+            return buscarImagemDoRestaurante(restauranteId);
+        });
     }
 
     // Método para adicionar uma avaliação ao restaurante
@@ -21,7 +58,7 @@ public class RestauranteController {
         if (restauranteId == null || restauranteId.isEmpty() || avaliacao == null) {
             throw new IllegalArgumentException("ID do restaurante e avaliação não podem ser nulos.");
         }
-        
+
         try {
             restauranteService.adicionarAvaliacao(restauranteId, avaliacao);
             logger.info("Avaliação adicionada com sucesso para o restaurante ID: " + restauranteId);
@@ -71,9 +108,9 @@ public class RestauranteController {
         }
 
         try {
-            InputStream imagemStream = restauranteService.buscarImagemDoRestaurante(restauranteId);
-            logger.info("Imagem recuperada com sucesso para o restaurante ID: " + restauranteId);
-            return imagemStream;
+            InputStream imagem = restauranteService.buscarImagemDoRestaurante(restauranteId);
+            logger.info("Imagem encontrada para o restaurante ID: " + restauranteId);
+            return imagem; // Retorna o InputStream da imagem
         } catch (RuntimeException e) {
             logger.warning("Erro ao buscar imagem: " + e.getMessage());
             throw new RuntimeException("Erro ao buscar imagem: " + e.getMessage());

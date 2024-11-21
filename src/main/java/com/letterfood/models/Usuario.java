@@ -64,4 +64,14 @@ public class Usuario {
     public void setImagemId(String imagemId) {
         this.imagemId = imagemId;
     }
+
+    public Object getDescricao() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDescricao'");
+    }
+
+    public Object getImagemId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getImagemId'");
+    }
 }

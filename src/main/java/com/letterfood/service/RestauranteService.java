@@ -24,7 +24,25 @@ public class RestauranteService {
     private final GridFSBucket gridFSBucket;
     private static final Logger logger = Logger.getLogger(RestauranteService.class.getName());
 
-    // Construtor que recebe o RestauranteRepository
+    public void adicionarRestaurante(Restaurante restaurante) {
+        if (restaurante == null) {
+            throw new IllegalArgumentException("Restaurante não pode ser nulo.");
+        }
+        restauranteRepository.save(restaurante);
+    }
+
+    // Método para listar todos os restaurantes
+    public List<Restaurante> listarRestaurantes() {
+        return restauranteRepository.findAll();
+    }
+
+    // Método para buscar restaurante por ID
+    public Restaurante buscarRestaurantePorId(String restauranteId) {
+        return restauranteRepository.findById(restauranteId)
+                .orElseThrow(() -> new RestauranteNotFoundException("Restaurante com ID " + restauranteId + " não encontrado."));
+    }
+
+    // Construtor com injeção de dependência
     public RestauranteService(RestauranteRepository restauranteRepository) {
         this.restauranteRepository = restauranteRepository;
     }
@@ -150,5 +168,15 @@ public class RestauranteService {
         public RestauranteNotFoundException(String message) {
             super(message);
         }
+    }
+
+    public String adicionarImagemAoRestaurante(String restauranteId, InputStream imagemStream, String nomeImagem) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'adicionarImagemAoRestaurante'");
+    }
+
+    public InputStream buscarImagemDoRestaurante(String restauranteId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarImagemDoRestaurante'");
     }
 }
